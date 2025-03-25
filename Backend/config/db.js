@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const User = require('../models/User');  // Import the User model correctly
 const Course = require('../models/Course'); // Import the Course model as well
+require('dotenv').config(); // Load .env variables
+
 
 // Find the lecturer and update the courses
 async function addCourseToLecturer(lecturerId, courseId) {
@@ -53,17 +55,18 @@ enrollStudentsInCourse();
 
 addCourseToLecturer();
 
+
 const connectDB = async () => {
-    try {
-        const conn = await mongoose.connect("mongodb://localhost:27017/Afspade", {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log(`MongoDB Connected successfully`);
-    } catch (error) {
-        console.error(`Error: ${error.message}`);
-        process.exit(1);
-    }
+  try {
+      const conn = await mongoose.connect(process.env.MONGO_URI, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+      });
+      console.log(`MongoDB Connected successfully`);
+  } catch (error) {
+      console.error(`Error: ${error.message}`);
+      process.exit(1);
+  }
 };
 
 module.exports = connectDB;

@@ -8,6 +8,10 @@ const userRoutes = require("./routes/userRoutes");
 const courseRoutes = require("./routes/courseRoutes");
 const assignmentRoutes = require("./routes/assignmentRoutes");
 const chatRoutes = require("./routes/chatRoutes");
+require('dotenv').config();  // Load environment variables
+
+
+console.log("🔍 MongoDB URI:", process.env.MONGO_URI);
 
 dotenv.config();
 connectDB();
